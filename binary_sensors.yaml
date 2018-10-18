@@ -1,8 +1,5 @@
 - platform: template
   sensors:
-#    ring_motion:
-#      friendly_name: Front Door Motion
-#      value_template:   ' {% if states.input_boolean.ring_motion.state %} {{ states.input_boolean.ring_motion.states }} {% else %} off {% endif %}'
     garage_position:
       friendly_name: Garage Door
       value_template: "{{ is_state('switch.garage_door_99','on')}}"
@@ -18,38 +15,6 @@
   monitored_conditions:
     - ding
     - motion
-
-
-#- platform: command_line
-#  command: systemctl status openvpn@Sweden | grep -c "running" > /dev/null && echo Online || echo Offline
-#  payload_on: "Online"
-#  payload_off: "Offline" 
-#  device_class: connectivity
-#  name: Pi OpenVPN
-
-#- platform: command_line
-#  command: systemctl status sonarr | grep -c "running" > /dev/null && echo Online || echo Offline
-#  payload_on: "Online"
-#  payload_off: "Offline"
-#  device_class: connectivity
-#  name: sonarr
-
-#- platform: command_line
-#  command: systemctl status radarr  | grep -c "running" > /dev/null && echo Online || echo Offline
-#  payload_on: "Online"
-#  payload_off: "Offline"
-#  device_class: connectivity
-#  name: radarr
-
-
-#- platform: ffmpeg_motion 
-#  input: http://10.9.209.167/live
-#  friendly_name: Backyard Motion
-
-#- platform: ffmpeg_motion
-#  input: http://10.9.209.125/live
-#  friendly_name: Front Yard Motion
-
 
 
 - platform: rpi_gpio

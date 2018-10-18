@@ -148,7 +148,8 @@ mqtt:
   broker: localhost
   port: 1883
   username: !secret mqtt_username
-  password: !secret 
+  password: !secret mqtt_password
+  discovery: true
   discovery_prefix: homeassistant
 
 device_tracker:
@@ -171,6 +172,11 @@ device_tracker:
       - TILE
       - PHONE
 
+
+camera 1:
+  - platform: mjpeg
+    mjpeg_url: http://raspberrypi:8081/0/stream
+    name: Basement
 
 
 camera 7:
@@ -212,7 +218,7 @@ notify:
 vera:
   vera_controller_url: !secret vera_controller_url
   exclude: [ 85, 81, 87, 71, 73, 69, 79, 75, 77, 83, 185, 107, 27, 28, 29, 30, 187, 188, 189, 190, 191, 192, 193, ] 
-  lights: [ 118, 119, 130, 65, 63, 109, 220, 228, 229]
+  lights: [ 118, 119, 130, 65, 63, 109, 220, 228, 229, 232, 234]
 
 
 

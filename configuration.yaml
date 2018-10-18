@@ -148,7 +148,8 @@ mqtt:
   broker: localhost
   port: 1883
   username: !secret mqtt_username
-  password: !secret mqtt_password
+  password: !secret 
+  discovery_prefix: homeassistant
 
 device_tracker:
   - platform: owntracks_http

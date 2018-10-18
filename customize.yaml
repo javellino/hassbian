@@ -163,3 +163,6 @@ switch.tplink_plug:
   icon: mdi:lamp
 binary_sensor.mbr_window_sensor_197:
   device_class: window
+switch.bedfan:
+  friendly_name: Bedfan
+  icon: mdi:hotel

@@ -95,7 +95,6 @@ input_boolean.vacation_mode:
 binary_sensor.front_door_sensor_197:
   sensor_class: opening
 climate.basement:
-  entity_picture: http://wreckage.johndenverschoolofflight.com/hass/nest.png
   icon: mdi:thermostat
 climate.kitchen:
   icon: mdi:thermostat

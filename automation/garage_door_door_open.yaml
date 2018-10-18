@@ -1,0 +1,12 @@
+initial_state: 'on'
+trigger:
+  platform: state
+  entity_id: binary_sensor.garage_door_door_sensor
+  to: 'on'
+  for: 
+    minutes: 5
+action:
+  service: notify.pb
+  data:
+    message: "Door to garage is ajar"
+

@@ -1,0 +1,230 @@
+dominos:
+  alias: dominos
+  sequence:
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+    data:
+      color_name: red
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+    data:
+      color_name: blue
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+    data:
+      color_name: red
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+    data:
+      color_name: blue
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+    data:
+      color_name: red
+  - delay: 00:00:01
+  - service: light.turn_on
+    entity_id: light.living_room_lamp
+    data:
+      color_name: blue
+  - delay: 00:00:05
+  - service: light.turn_off
+    entity_id: light.living_room_lamp
+goodnight:
+  alias: goodnight
+  sequence:
+  - data:
+      entity_id: light.family_room
+    entity_id: light.family_room
+    service: light.turn_off
+  - data:
+      entity_id: light.office
+    entity_id: light.office
+    service: light.turn_off
+  - data:
+      entity_id: lock.front_door_lock_4
+    service: lock.lock
+  - service: script.turn_off_tv
+  - data:
+      entity_id: group.outside_lights
+    service: light.turn_off
+  - data:
+      entity_id: media_player.kitchen_speaker
+    service: media_player.media_stop
+  - data:
+      activity: '-1'
+      entity_id: remote.harmony_hub
+    service: remote.turn_on
+  - data:
+      entity_id: switch.family_room_fan_213
+    service: switch.turn_off
+  - data:
+      entity_id: light.fireplace_lights_220
+    service: light.turn_off
+  - data:
+      entity_id: switch.tplink_plug
+    service: switch.turn_off
+  - data:
+      entity_id: media_player.kitchen_speaker
+      message: Don't forget to lock up Joe's car.
+    service: tts.google_say
+lock_up_house:
+  alias: Lock up house
+  sequence:
+  - service: lock.lock
+    entity_id: lock.front_door_lock_4
+  - service: switch.turn_off
+    entity_id: switch.garage_door_99
+mbr_awake_in_bed:
+  alias: in bed but awake
+  sequence:
+  - service: light.turn_on
+    entity_id: light.mbr_lights_109
+  - service: switch.turn_on
+    entity_id: switch.mbr_fan_108
+  - service: light.turn_off
+    entity_id: group.mbr_both_lamps
+mbr_nightlight_mode:
+  alias: pre-sleep mode
+  sequence:
+  - service: light.turn_on
+    entity_id: light.jens_lamp_118, light.joes_lamp_119
+    data:
+      brightness: 255
+  - service: light.turn_off
+    entity_id: light.mbr_lights_109
+  - service: switch.turn_on
+    entity_id: switch.mbr_fan_108
+mbr_sleep_mode:
+  alias: sleep mode
+  sequence:
+  - service: light.turn_off
+    entity_id: light.jens_lamp_118, light.joes_lamp_119, light.mbr_lights_109
+  - service: switch.turn_on
+    entity_id: switch.mbr_fan_108
+office_timed_lights:
+  alias: turn on office lights and set timer
+  sequence:
+  - service: script.turn_off
+    entity_id: script.office_timer_off
+  - service: light.turn_on
+    entity_id: light.office
+  - service: script.turn_on
+    entity_id: script.office_timer_off
+office_timer_off:
+  alias: wait 5 mins and turn off lights
+  sequence:
+  - delay: 00:05:00
+  - service: light.turn_off
+    entity_id: light.office
+outside_on_delay_off:
+  alias: outside lights on for ten mins then off
+  sequence:
+  - service: homeassistant.turn_on
+    entity_id: group.outside_lights
+  - delay: 00:10:00
+  - service: homeassistant.turn_off
+    entity_id: group.outside_lights
+refresh_owntracks:
+  alias: Refresh Owntracks
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: owntracks/Joe/joesiphone6s/cmd
+      payload_template: '{"_type":"cmd","action":"reportLocation"}'
+  - service: mqtt.publish
+    data:
+      topic: owntracks/Abby/abbysiphone/cmd
+      payload_template: '{"_type":"cmd","action":"reportLocation"}'
+reset_ring_motion:
+  alias: delay 30s then reset boolean
+  sequence:
+  - delay:
+      seconds: 30
+  - service: homeassistant.turn_off
+    data:
+      entity_id: input_boolean.ring_motion
+timed_lamp:
+  alias: turn on timed lamp and set timer
+  sequence:
+  - data:
+      entity_id: script.timer_off
+    service: script.turn_off
+  - data_template:
+      entity_id: light.upstairs_hall_lamp_130
+      brightness: '{% set current_hour = now().strftime("%H") | int %} {%- if current_hour
+        <= 6 %} 64 {% elif current_hour < 20 %} 255 {% else %} 128 {% endif %}'
+    service: light.turn_on
+  - data: {}
+    service: script.timer_off
+timer_off:
+  alias: turn off lamp after 5 minutes
+  sequence:
+  - delay: 00:05:00
+  - service: light.turn_off
+    data:
+      entity_id: light.upstairs_hall_lamp_130
+turn_off_tv:
+  alias: Turn off Family room TV
+  sequence:
+    service: remote.turn_on
+    data:
+      entity_id: remote.family_room
+      activity: -1
+'1520625872816':
+  alias: Downstairs hallway on 10 mins
+  sequence:
+  - alias: ''
+    data:
+      brightness: '100'
+      color_name: red
+      entity_id: light.living_room_lamp
+    service: light.turn_on
+  - delay: 00:10:00
+  - data:
+      entity_id: light.living_room_lamp
+    service: light.turn_off
+'1520628726897':
+  alias: Dinnertime
+  sequence:
+  - data_template:
+      entity_id: media_player.mpd
+      media_content_id: "{{ [\"spotify:user:lukebryan:playlist:1Nv7H5IhZc25M9qTrv48Kb\"\
+        ,\n    \"spotify:user:thodge16:playlist:6SSN5UlqtN3d02xp8fE0pk\",\n    \"\
+        spotify:user:griffis007:playlist:0e5Qdtbmm1eR5T4no1RZKu\",\n    \"spotify:user:pnatusch:playlist:3LWffy4IjGsNhOnHWppek0\"\
+        \ ] | random }}\n"
+      media_content_type: PLAYLIST
+    service: media_player.play_media
+  - data: {}
+    service: script.turn_off_tv
+  - data:
+      entity_id: media_player.mpd
+      shuffle: 'true'
+    service: media_player.shuffle_set
+  - delay: 00:00:03
+  - alias: ''
+    data:
+      entity_id: media_player.kitchen_speaker
+      message: Lets listen to some music.
+    service: tts.google_say
+  - data:
+      entity_id: media_player.kitchen_speaker
+      media_content_id: http://10.9.209.130:8000/mopidy.mp3
+      media_content_type: MUSIC
+    service: media_player.play_media
+  - data:
+      entity_id: media_player.kitchen_speaker
+      volume_level: '0.22'
+    service: media_player.volume_set
+'1524076395497':
+  alias: kill all arpspoofing
+  sequence:
+  - data: {}
+    service: shell_command.kill_arpspoof
+'1524076412092':
+  alias: kill_all_arpspoofing
+  sequence:
+  - data: {}
+    service: shell_command.kill_arpspoof

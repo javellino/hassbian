@@ -1,0 +1,14 @@
+alias: 'reset toggle when arrive at gymnastics'
+initial_state: 'on'
+trigger:
+  platform: zone
+  entity_id: device_tracker.joe_joesiphone6s
+  zone: zone.gymnastics
+  event: enter
+condition:
+  condition: state
+  entity_id: input_boolean.becca_pick_up
+  state: 'on'
+action:
+  service: input_boolean.turn_off
+  entity_id: input_boolean.becca_pick_up

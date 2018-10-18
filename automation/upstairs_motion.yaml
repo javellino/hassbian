@@ -1,0 +1,44 @@
+alias: 'upstairs motion for lamp'
+initial_state: 'on'
+trigger:
+  platform: state
+  entity_id: binary_sensor.upstairs_motion_124
+  to: 'on'
+condition:
+  condition: state
+  entity_id: sun.sun
+  state: below_horizon
+action:
+  service: homeassistant.turn_on
+  entity_id: script.timed_lamp
+#  - service: light.turn_on
+#    data_template: 
+#      entity_id: light.upstairs_hall_lamp_130 
+#      brightness: >-
+#       {% set current_hour = now().strftime("%H") | int %}
+#       {%- if current_hour <= 6 %} 64
+#       {% elif current_hour < 20 %} 255
+#       {% else %} 128
+#       {% endif %}
+#  - delay: 00:05:00
+#  - service: light.turn_off
+#    entity_id: light.upstairs_hall_lamp_130
+
+
+
+#  service: light.turn_on
+#  data_template:
+#    entity_id: light.upstairs_hall_lamp
+#    brightness: >-
+#      {% set current_hour = now().strftime("%H") | int %}
+#      {%- if current_hour <= 6 %} 64 
+#      {% elif current_hour < 20 %} 255
+#      {% else %} 128 
+#      {% endif %}
+
+
+
+
+
+
+

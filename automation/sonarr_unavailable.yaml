@@ -1,0 +1,10 @@
+alias: 'send message if Sonarr down'
+initial_state: 'on'
+trigger:
+  platform: template
+  value_template: "{% if is_state('sensor.sonarr_upcoming', 'Unavailable') %} true {% else %} false {% endif %}"
+action:
+  service: notify.pb
+  data:
+    message: "Sonarr is down.  Please check."
+  

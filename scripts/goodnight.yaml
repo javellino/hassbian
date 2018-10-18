@@ -1,0 +1,7 @@
+alias: goodnight
+sequence:
+  - service: light.turn_off
+    entity_id: light.family_room
+  - service: light.turn_off
+    entity_id: light.office
+

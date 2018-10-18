@@ -1,0 +1,13 @@
+alias: lock up house
+initial_state: 'on'
+trigger:
+  platform: event
+  event_type: ios.notification_action_fired
+  event_data:
+    actionName: YESLOCKUP
+action:
+  - service: script.lock_up_house 
+  - service: notify.pb
+    data:
+      message: "house locked"
+

@@ -1,0 +1,226 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret home_elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+
+  packages: !include_dir_named packages
+
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: !secret base_url
+
+
+logger:
+  default: critical
+  logs:
+    homeassistant.components.http.ban: warning
+
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
+ffmpeg:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+automation old: !include_dir_list automation
+
+input_boolean: !include input_booleans.yaml
+
+input_number: !include input_sliders.yaml
+
+input_select: !include input_selects.yaml
+
+binary_sensor: !include binary_sensors.yaml
+
+sensor: !include sensors.yaml
+
+zone: !include zones.yaml
+
+
+arpspoof:
+  interface: eth0
+
+switch:
+  - platform: arpspoof
+    devices:
+      abby_iphone:
+        friendly_name: Abbys iphone
+        address: 10.9.209.106
+        icon: 'mdi:iphone'
+      becca_iphone:
+        friendly_name: Beccas iphone
+        address: 10.9.209.157
+        icon: 'mdi:iphone'
+      becca_roku:
+        friendly_name: Beccas Roku
+        address: 10.9.209.205
+        icon: 'mdi:television'
+      becca_chromebook:
+        friendly_name: Beccas Chromebook
+        address: 10.9.209.160
+        icon: 'mdi:laptop'
+      abby_chromebook:
+        friendly_name: Abbys Chromebook
+        address: 10.9.209.246
+        icon: 'mdi:laptop'
+      abby_roku:
+        friendly_name: Abbys roku
+        address: 10.9.209.66
+        icon: 'mdi:television'
+  - platform: tplink
+    host: 10.9.209.105
+
+
+shell_command:
+  start_deus_ex: curl !secret start_deus_ex
+  stop_deus_ex: curl !secret stop_deus_ex
+  
+
+
+panel_iframe:
+  bg:
+    title: "Joes CGM"
+    url: !secret cgm_url
+    icon: mdi:chart-line
+
+
+mqtt:
+  broker: localhost
+  port: 1883
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+device_tracker:
+  - platform: owntracks_http
+  - platform: owntracks
+    max_gps_accuracy: 100
+    waypoints: true
+    waypoint_whitelist:
+      - Joe
+  - platform: unifi
+    host: 10.9.209.109
+    verify_ssl: false
+    username: !secret unifi_username
+    password: !secret unifi_password
+
+  - platform: tile
+    username: !secret tile_username
+    password: !secret tile_password
+    monitored_variables:
+      - TILE
+      - PHONE
+
+
+
+camera 7:
+  - platform: ring
+
+
+media_player:
+  - platform: mpd
+    host: raspberrypi.local 
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_client_secret
+ 
+
+
+#ifttt API
+ifttt:
+  key: !secret ifttt_key
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_secret
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+notify:
+  - name: pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_api_key
+  - name: pb
+    platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key 
+
+
+# Vera Platform
+vera:
+  vera_controller_url: !secret vera_controller_url
+  exclude: [ 85, 81, 87, 71, 73, 69, 79, 75, 77, 83, 185, 107, 27, 28, 29, 30, 187, 188, 189, 190, 191, 192, 193, ] 
+  lights: [ 118, 119, 130, 65, 63, 109, 220, 228, 229]
+
+
+
+
+wemo:
+
+
+tuya: 
+  username: !secret tuya_username
+  password: !secret tuya_password
+  country_code: 1
+  

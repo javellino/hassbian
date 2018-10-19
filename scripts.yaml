@@ -32,44 +32,59 @@ dominos:
   - delay: 00:00:05
   - service: light.turn_off
     entity_id: light.living_room_lamp
+    
 goodnight:
   alias: goodnight
   sequence:
+  #to be done to the cadence of goodnight moon
+  
+  #goodnight family room lights and media
   - data:
       entity_id: light.family_room
-    entity_id: light.family_room
+    entity_id: light.joe_family_room_lamp, light.fireplace_lights_220
     service: light.turn_off
-  - data:
-      entity_id: light.office
-    entity_id: light.office
-    service: light.turn_off
-  - data:
-      entity_id: lock.front_door_lock_4
-    service: lock.lock
-  - service: script.turn_off_tv
-  - data:
-      entity_id: group.outside_lights
-    service: light.turn_off
-  - data:
-      entity_id: media_player.kitchen_speaker
-    service: media_player.media_stop
+  - service: switch.turn_off
+    data:
+      entity_id: switch.family_room_fan_213, switch.tplink_plug
   - data:
       activity: '-1'
       entity_id: remote.harmony_hub
     service: remote.turn_on
+      
+#goodnight office      
   - data:
-      entity_id: switch.family_room_fan_213
-    service: switch.turn_off
-  - data:
-      entity_id: light.fireplace_lights_220
+      entity_id: light.office
+    entity_id: light.office
+    
+#goodnight outside    
     service: light.turn_off
   - data:
-      entity_id: switch.tplink_plug
-    service: switch.turn_off
+      entity_id: lock.front_door_lock_4
+    service: lock.lock
+  - data:
+      entity_id: group.outside_lights
+    service: light.turn_off
+    
+#goodnight kitchen    
+  - data:
+      entity_id: media_player.kitchen_speaker
+    service: media_player.media_stop
+  - service: light.turn_off
+    entity_id: group.kitchen_lights
+
+#good night car
   - data:
       entity_id: media_player.kitchen_speaker
       message: Don't forget to lock up Joe's car.
     service: tts.google_say
+    
+#reminder...goodnight car
+  - delay: 00:00:15
+  - service: tts.google_say
+    data:
+      entity_id: media_player.office_speaker
+      message: "did you forget to lock up the car?"
+
 lock_up_house:
   alias: Lock up house
   sequence:
@@ -191,10 +206,7 @@ turn_off_tv:
   sequence:
   - data_template:
       entity_id: media_player.mpd
-      media_content_id: "{{ [\"spotify:user:lukebryan:playlist:1Nv7H5IhZc25M9qTrv48Kb\"\
-        ,\n    \"spotify:user:thodge16:playlist:6SSN5UlqtN3d02xp8fE0pk\",\n    \"\
-        spotify:user:griffis007:playlist:0e5Qdtbmm1eR5T4no1RZKu\",\n    \"spotify:user:pnatusch:playlist:3LWffy4IjGsNhOnHWppek0\"\
-        \ ] | random }}\n"
+      media_content_id: "{{ [ 'spotify:user:lukebryan:playlist:1Nv7H5IhZc25M9qTrv48Kb', 'spotify:user:thodge16:playlist:6SSN5UlqtN3d02xp8fE0pk', 'spotify:user:griffis007:playlist:0e5Qdtbmm1eR5T4no1RZKu', 'spotify:user:pnatusch:playlist:3LWffy4IjGsNhOnHWppek0'] | random }}"
       media_content_type: PLAYLIST
     service: media_player.play_media
   - data: {}

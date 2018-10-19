@@ -13,7 +13,7 @@ binary_sensor:
     sensors:
       front_hall_motion:
         friendly_name: Front Hall Motion
-        value_template: "{{states.input_boolean.front_hall_motion.state }}"
+        value_template: "{% if is_state(states.input_boolean.front_hall_motion.state, 'on') %} on {% else %} off {% endif %}}"
         device_class: motion
         
       

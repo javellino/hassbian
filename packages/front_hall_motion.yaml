@@ -41,10 +41,10 @@ automation:
     condition: 
       condition: or
       conditions:
-        - condition: sun
-          after: sunset
-        - condition: sun
-          before: sunrise
+        - condition: state
+          entity_id: sun.sun
+          state: below_horizon
+  
     action: 
       service: light.turn_on
       entity_id: light.living_room_lamp

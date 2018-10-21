@@ -160,7 +160,7 @@ device_tracker:
     waypoint_whitelist:
       - Joe
   - platform: unifi
-    host: 10.9.209.109
+    host: 10.9.209.11
     verify_ssl: false
     username: !secret unifi_username
     password: !secret unifi_password

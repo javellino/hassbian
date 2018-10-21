@@ -240,7 +240,7 @@
 
 - platform: ups
   name: 'UPS'
-  username: joeavellino
+  username: !secret ups_username
   password: !secret ups_password
 
 
@@ -253,12 +253,6 @@
     - last_motion
     - volume
 
-- platform: fedex
-  name: 'FedEx'
-  username: joeavellino
-  password: J3nnif3r!
-
-
 
 - platform: crimereports
   name: neighborhood_crime
@@ -270,7 +264,7 @@
     - 'date'
 
 - platform: uber
-  server_token: Wk-K52fBYhu5uwkSZpA-_QF8N3m3-A-KnUDC1T-g
+  server_token: !secret uber_token
 
 - platform: season
   type: astronomical
@@ -296,7 +290,7 @@
 
 #custom tautulli sensor
 - platform: tautulli
-  host: javellin.duckdns.org/tautulli
+  host: !secret tatulli_url
   ssl: true
   verify_ssl: false
   token: !secret tautulli_token

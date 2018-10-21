@@ -129,7 +129,7 @@
 
 - platform: sonarr
   api_key: !secret sonarr_api_key
-  host: beaker
+  host: gonzo.local
   port: 8989
   monitored_conditions:
     - upcoming
@@ -137,7 +137,7 @@
 
 - platform: radarr
   api_key: !secret radarr_api_key
-  host: beaker
+  host: gonzo.local
   port: 7878
   monitored_conditions:
     - upcoming

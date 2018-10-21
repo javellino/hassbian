@@ -221,7 +221,7 @@
     - precip_probability
     - precip_intensity
     - wind_speed
-    - pressure
+#    - pressure
     - wind_bearing
     - apparent_temperature
   update_interval: '00:15:00'

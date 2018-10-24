@@ -162,6 +162,7 @@ device_tracker:
   - platform: unifi
     host: 10.9.209.11
     verify_ssl: false
+    site_id: !secret unifi_site_id
     username: !secret unifi_username
     password: !secret unifi_password
 

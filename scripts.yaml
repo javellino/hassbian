@@ -54,10 +54,9 @@ goodnight:
 #goodnight office      
   - data:
       entity_id: light.office
-    entity_id: light.office
+    service: light.turn_off
     
 #goodnight outside    
-    service: light.turn_off
   - data:
       entity_id: lock.front_door_lock_4
     service: lock.lock
@@ -73,9 +72,11 @@ goodnight:
     entity_id: group.kitchen_lights
     
 #goodnight dining room
-
-
-
+  - service: switch.turn_off 
+    data:
+      entity_id: 
+        - switch.dining_room_bookshelf
+        - switch.dining_room_china_cabinet
 
 #good night car
   - data:

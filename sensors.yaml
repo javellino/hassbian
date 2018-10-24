@@ -290,7 +290,7 @@
 
 #custom tautulli sensor
 - platform: tautulli
-  host: !secret tatulli_url
+  host: !secret tautulli_url
   ssl: true
   verify_ssl: false
   token: !secret tautulli_token
@@ -303,21 +303,21 @@
 
 
 
-#- platform: rest
-#  resource: !secret joes_heroku_url
-#  name: joes current BG
-#  value_template: >
-#        {% set temp=value.split("\t") %}
-#        {{ temp[2] }}
+- platform: rest
+  resource: !secret joes_heroku_url
+  name: joes current BG
+  value_template: >
+        {% set temp=value.split("\t") %}
+        {{ temp[2] }}
 
-#- platform: rest
-#  resource: !secret joes_heroku_url_json
-#  name: Joes BG value
-#  unit_of_measurement: "mg/dL"
-#  value_template: ' {{value_json[0].sgv }} '
+- platform: rest
+  resource: !secret joes_heroku_url_json
+  name: Joes BG value
+  unit_of_measurement: "mg/dL"
+  value_template: ' {{value_json[0].sgv }} '
   
-#- platform: rest
-#  resource: !secret joes_heroku_url_json
-#  name: Joes BG direction
-#  value_template: ' {{value_json[0].direction }} '
+- platform: rest
+  resource: !secret joes_heroku_url_json
+  name: Joes BG direction
+  value_template: ' {{value_json[0].direction }} '
 

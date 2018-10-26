@@ -35,7 +35,7 @@
     - upload_speed
 
 - platform: nzbget
-  host: beaker
+  host: 10.9.209.11
   username: !secret nzbget_username
   password: !secret nzbget_password
   monitored_variables:
@@ -70,7 +70,7 @@
       value_template: "{{ 'Online' if is_state('device_tracker.harmonyhub', 'home') else 'OFFLINE' }}"
     abby_location:
       friendly_name: Abby's Location
-      value_template: "{% if is_state('states.device_tracker.abbysiphone.state', 'home' ) %} {{states.device_tracker.abbysiphone.state }} {% else %}  {{ states.device_tracker.abby_abbysiphone.state }} {% endif %}  " 
+      value_template: "{% if is_state('states.device_tracker.abbysiphone.state', 'home' ) %} {{states.device_tracker.abbysiphone.state }} {% else %}  {{ states.device_tracker.abby_iphone.state }} {% endif %}  " 
     joe_location:
       friendly_name: Joe's Location
       value_template: "{% if is_state('states.device_tracker.joes_iphone_7.state', 'home' ) %} {{states.device_tracker.joes_iphone_7.state }} {% else %}  {{ states.device_tracker.joe_iphone.state }} {% endif %}  " 
@@ -129,7 +129,7 @@
 
 - platform: sonarr
   api_key: !secret sonarr_api_key
-  host: gonzo.local
+  host: 10.9.209.11
   port: 8989
   monitored_conditions:
     - upcoming
@@ -137,7 +137,7 @@
 
 - platform: radarr
   api_key: !secret radarr_api_key
-  host: gonzo.local
+  host: 10.9.209.11
   port: 7878
   monitored_conditions:
     - upcoming

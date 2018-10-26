@@ -72,11 +72,13 @@ tts:
 # Cloud
 cloud:
 
+
+
+ffmpeg:
+
 ring:
   username: !secret ring_username
   password: !secret ring_password
-
-ffmpeg:
 
 group: !include groups.yaml
 automation: !include automations.yaml

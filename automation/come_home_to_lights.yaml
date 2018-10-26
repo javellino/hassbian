@@ -2,7 +2,7 @@ alias: 'turn on outside lights if off when come home'
 initial_state: 'on'
 trigger:
   platform: state
-  entity_id: device_tracker.jensphone, sensor.abby_location, sensor.joe_location
+  entity_id: device_tracker.jensphone, sensor.abby_location, sensor.joe_location, sensor.becca_location
   from: 'not_home'
   to: 'home'
 condition:

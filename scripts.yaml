@@ -56,6 +56,9 @@ goodnight:
       entity_id: light.office
     service: light.turn_off
     
+#goodnight basement lights
+
+
 #goodnight outside    
   - data:
       entity_id: lock.front_door_lock_4
@@ -212,7 +215,11 @@ turn_off_tv:
   sequence:
   - data_template:
       entity_id: media_player.mpd
-      media_content_id: "{{ [ 'spotify:user:lukebryan:playlist:1Nv7H5IhZc25M9qTrv48Kb', 'spotify:user:thodge16:playlist:6SSN5UlqtN3d02xp8fE0pk', 'spotify:user:griffis007:playlist:0e5Qdtbmm1eR5T4no1RZKu', 'spotify:user:pnatusch:playlist:3LWffy4IjGsNhOnHWppek0'] | random }}"
+      media_content_id: >
+          {{ [ 'spotify:user:lukebryan:playlist:1Nv7H5IhZc25M9qTrv48Kb', 
+          'spotify:user:thodge16:playlist:6SSN5UlqtN3d02xp8fE0pk', 
+          'spotify:user:griffis007:playlist:0e5Qdtbmm1eR5T4no1RZKu', 
+          'spotify:user:pnatusch:playlist:3LWffy4IjGsNhOnHWppek0'] | random }}
       media_content_type: PLAYLIST
     service: media_player.play_media
   - data: {}
@@ -246,3 +253,13 @@ turn_off_tv:
   sequence:
   - data: {}
     service: shell_command.kill_arpspoof
+everyone_downstairs:
+  alias: everyone downstaris
+  sequence:
+  - service: light.turn_off
+    entity_id: light.mbr_lights_109, light.jens_lamp_118, light.joes_lamp_119
+  - service: switch.turn_off
+    entity_id: switch.mbr_fan_108, switch.bedfan, switch.wemo_switch_bravo
+  - service: media_player.turn_off
+    entity_id: media_player.bedroom
+  

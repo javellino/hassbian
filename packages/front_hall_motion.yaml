@@ -23,6 +23,7 @@ input_boolean:
     
 automation:
   - alias: "reset front hall motion boolean"
+    initial_state: 'on'
     trigger:
       platform: state
       entity_id: binary_sensor.front_hall_motion_raw
@@ -34,22 +35,22 @@ automation:
         entity_id: script.reset_motion_boolean
     
   - alias: 'detect hall motion'
+    initial_state: 'on'
     trigger: 
       platform: state
       entity_id: input_boolean.front_hall_motion
       to: 'on'
     condition: 
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: sun.sun
-          state: below_horizon
+      condition: state
+      entity_id: sun.sun
+      state: below_horizon
   
     action: 
       service: light.turn_on
       entity_id: light.living_room_lamp
       
   - alias: 'stop detecting motion turn off lamp'
+    initial_state: 'on'
     trigger: 
       platform: state
       entity_id: input_boolean.front_hall_motion

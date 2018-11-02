@@ -137,12 +137,33 @@ familyroom:
     - switch.family_room_fan_213
     - switch.tplink_plug
 
+basement:
+  name: Basement
+  view: yes
+  entities:
+    - climate.bsmt
+    - group.basement_camera_control
+    - sensor.basement_thermostat_temperature
+    - group.basement_media
+    - binary_sensor.basement_motion_1_216
+    - binary_sensor.basement_near_side
+    - group.basement_lights
+    - camera.basement
+
+
+dining_room:
+  name: Dining Room
+  view: yes
+  entities: 
+    - switch.dining_room_bookshelf
+    - switch.dining_room_china_cabinet
 
 kids_rooms:
   name: Kids rooms
   view: yes
   entities:
     - group.kids_device_custom_timer
+    - switch.mini_smart_socket
     - switch.abby_tv_91
     - switch.becca_tv_90
     - switch.abby_iphone
@@ -152,6 +173,12 @@ kids_rooms:
     - switch.abby_chromebook    
     - switch.abby_roku
 
+kitchen:
+  name: Kitchen
+  view: yes
+  entities:
+    - climate.kit
+    - sensor.kichen_thermostat_temperature
 
 abby_presence:
   entities:
@@ -238,12 +265,7 @@ doors:
     - binary_sensor.garage_position  
 
 
-dining_room:
-  name: Dining Room
-  view: yes
-  entities: 
-    - switch.dining_room_bookshelf
-    - switch.dining_room_china_cabinet
+
     
 
 office:
@@ -322,12 +344,7 @@ garage_door:
   entities:
     - switch.garage_door_99
 
-kitchen:
-  name: Kitchen
-  view: yes
-  entities:
-    - climate.kit
-    - sensor.kichen_thermostat_temperature
+
     
 kitchen_lights:
   name: lights
@@ -340,18 +357,7 @@ mbr_both_lamps:
     - light.joes_lamp_119
 
 
-basement:
-  name: Basement
-  view: yes
-  entities:
-    - climate.bsmt
-    - group.basement_camera_control
-    - sensor.basement_thermostat_temperature
-    - group.basement_media
-    - binary_sensor.basement_motion_1_216
-    - binary_sensor.basement_near_side
-    - group.basement_lights
-    - camera.basement
+
     
 
 basement_media:

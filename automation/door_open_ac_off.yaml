@@ -33,7 +33,7 @@ action:
                
 
   #   " {{ states('climate.kitchen') }} "
-  - service: notify.pb
+  - service: notify.ios_joesiphone7
     data:
       message: "door open triggered"
 

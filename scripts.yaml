@@ -48,7 +48,7 @@ goodnight:
       entity_id: switch.family_room_fan_213, switch.tplink_plug
   - data:
       activity: '-1'
-      entity_id: remote.harmony_hub
+      entity_id: remote.family_room
     service: remote.turn_on
       
 #goodnight office      
@@ -56,9 +56,16 @@ goodnight:
       entity_id: light.office
     service: light.turn_off
     
-#goodnight basement lights
-
-
+#goodnight basement lights and media
+  - data:
+      entity_id: group.basement_lights
+    service: light.turn_off
+    
+  - data:
+      entity_id: remote.harmony_hub
+      activity: -1
+    service: remote.turn_on
+    
 #goodnight outside    
   - data:
       entity_id: lock.front_door_lock_4
@@ -86,6 +93,14 @@ goodnight:
       entity_id: media_player.kitchen_speaker
       message: Don't forget to lock up Joe's car.
     service: tts.google_say
+    
+# good night bedroom blanket and fan
+# this means we turn it on....
+
+  - data:
+      entity_id: switch.bedfan, switch.wemo_switch_bravo
+    service: switch.turn_on
+    
     
 #reminder...goodnight car
   - delay: 00:00:15

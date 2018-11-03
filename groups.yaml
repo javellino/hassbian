@@ -100,8 +100,9 @@ family_room_media:
 batt_status:
   name: Battery Status
   entities:
-    - sensor.joes_iphone
-    - sensor.abbys_iphone
+    - sensor.joe_iphone_battery
+    - sensor.abby_iphone_battery
+    - sensor.becca_iphone_battery
     - sensor.front_batt_level
     - sensor.front_sensor_batt_level
     - sensor.office_batt_level

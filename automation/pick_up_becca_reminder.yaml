@@ -10,10 +10,10 @@ condition:
       entity_id: input_boolean.becca_pick_up
       state: 'on'
     - condition: state
-      entity_id: device_tracker.joe_joesiphone6s
+      entity_id: sensor.joe_location
       state: 'home'
 action:
-  - service: notify.pb
+  - service: notify.ios_joesiphone7
     data_template:
       message: "its now {{states.sensor.time.state}}, you should have left to get Becca!"
   - service: light.turn_on

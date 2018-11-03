@@ -79,6 +79,15 @@
       value_template: '{{ states.device_tracker.joe_iphone.attributes.battery|int }}'
       device_class: battery
       unit_of_measurement: "%"
+    abby_iphone_battery:
+      friendly_name: Abby's Battery
+      value_template: '{{ states.device_tracker.abby_iphone.attributes.battery|int }}'
+      unit_of_measurement: "%"
+    becca_iphone_battery:
+      friendly_name: Becca's Battery
+      value_template: '{{ states.device_tracker.becca_iphone.attributes.battery|int }}'
+      unit_of_measurement: "%"
+    
     becca_location:
       friendly_name: Becca's Location
       value_template: "{% if is_state('states.device_tracker.device_tracker.becca_beccasiphone', 'home' ) %} {{states.device_tracker.device_tracker.becca_beccasiphone.state }} {% else %}  {{ states.device_tracker.becca_iphone.state }} {% endif %}  " 
@@ -108,11 +117,11 @@
       value_template: "{{states.sensor.allergy_index_tomorrow.attributes.rating}}"
       icon_template: "{{states.sensor.allergy_index_tomorrow.attributes.icon}}"   
 
-- platform: mqtt
-  state_topic: owntracks/Abby/abbysiphone
-  name: "Abbys iPhone"
-  unit_of_measurement: "%"
-  value_template: "{{ value_json.batt }}"
+#- platform: mqtt
+#  state_topic: owntracks/Abby/abbysiphone
+#  name: "Abbys iPhone"
+#  unit_of_measurement: "%"
+#  value_template: "{{ value_json.batt }}"
 
 - platform: mqtt
   state_topic: Vera/Events/FrontDoorLock

@@ -156,17 +156,18 @@ mqtt:
 
 device_tracker:
   - platform: owntracks_http
-  - platform: owntracks
-    max_gps_accuracy: 100
-    waypoints: true
-    waypoint_whitelist:
-      - Joe
+#platform: owntracks
+#    max_gps_accuracy: 100
+#    waypoints: true
+#    waypoint_whitelist:
+#      - Joe
   - platform: unifi
     host: 10.9.209.11
     verify_ssl: false
     site_id: !secret unifi_site_id
     username: !secret unifi_username
     password: !secret unifi_password
+    interval_seconds: 25
 
   - platform: tile
     username: !secret tile_username
@@ -188,12 +189,14 @@ camera 7:
 
 media_player:
   - platform: mpd
-    host: raspberrypi.local 
+    host: raspberrypi
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
  
-
+recorder:
+  purge_keep_days: 3
+  
 
 #ifttt API
 ifttt:
@@ -220,7 +223,7 @@ notify:
 # Vera Platform
 vera:
   vera_controller_url: !secret vera_controller_url
-  exclude: [ 85, 81, 87, 71, 73, 69, 79, 75, 77, 83, 185, 107, 27, 28, 29, 30, 187, 188, 189, 190, 191, 192, 193, ] 
+  exclude: [ 85, 81, 87, 71, 73, 69, 79, 75, 77, 83, 185, 107, 27, 28, 29, 30, 187, 188, 189, 190, 191, 192, 193, 226 ] 
   lights: [ 118, 119, 130, 65, 63, 109, 220, 228, 229, 232, 234]
 
 

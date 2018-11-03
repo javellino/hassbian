@@ -24,7 +24,7 @@ action:
     data_template:
       entity_id: climate.kit
       operation_mode: " {{ states('input_select.nest_kitchen_state') }} "
-  - service: notify.pb
+  - service: notify.ios_joesiphone7
     data_template:
       message: "operation mode set to {{ states('input_select.nest_kitchen_state') }}. "  
 

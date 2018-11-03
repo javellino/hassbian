@@ -18,7 +18,7 @@ condition:
       entity_id: binary_sensor.front_door_sensor
       state: 'on'
 action:
-  service: notify.ios_joes_iphone_7
+  service: notify.ios_joesiphone7
   data_template:
     message: >
       {% if is_state('states.switch.garage_door_99.state', 'on') %}

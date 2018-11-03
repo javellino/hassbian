@@ -10,7 +10,7 @@ condition:
   entity_id: calendar.joe_to_work
   state: 'on'
 action:
-  service: notify.pb
+  service: notify.ios_joesiphone7
   data_template:
     message: "Work to home: {{ states.sensor.work_to_home.state }} min"
 

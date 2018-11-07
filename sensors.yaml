@@ -38,6 +38,7 @@
   host: 10.9.209.11
   username: !secret nzbget_username
   password: !secret nzbget_password
+  scan_interval: 60
   monitored_variables:
     - download_rate
     - uptime
@@ -143,6 +144,7 @@
   monitored_conditions:
     - upcoming
   days: 3
+  scan_interval: 600
 
 - platform: radarr
   api_key: !secret radarr_api_key
@@ -151,12 +153,19 @@
   monitored_conditions:
     - upcoming
     - status
+  scan_interval: 600
     
 
 - platform: waze_travel_time
   name: Home to Work
   origin: !secret home_address
   destination: !secret work_address
+  region: 'US'
+
+- platform: waze_travel_time
+  name: joe to gymnastics
+  origin: device_tracker.joe_iphone
+  destination: !secret gymnastics_address
   region: 'US'
 
 - platform: waze_travel_time
@@ -303,6 +312,7 @@
   ssl: true
   verify_ssl: false
   token: !secret tautulli_token
+  scan_interval: 45
   monitored_conditions:
     - stream_count
     - stream_count_transcode

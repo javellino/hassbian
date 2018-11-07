@@ -103,32 +103,32 @@ arpspoof:
   interface: eth0
 
 switch:
-  - platform: arpspoof
-    devices:
-      abby_iphone:
-        friendly_name: Abbys iphone
-        address: 10.9.209.106
-        icon: 'mdi:iphone'
-      becca_iphone:
-        friendly_name: Beccas iphone
-        address: 10.9.209.157
-        icon: 'mdi:iphone'
-      becca_roku:
-        friendly_name: Beccas Roku
-        address: 10.9.209.205
-        icon: 'mdi:television'
-      becca_chromebook:
-        friendly_name: Beccas Chromebook
-        address: 10.9.209.160
-        icon: 'mdi:laptop'
-      abby_chromebook:
-        friendly_name: Abbys Chromebook
-        address: 10.9.209.246
-        icon: 'mdi:laptop'
-      abby_roku:
-        friendly_name: Abbys roku
-        address: 10.9.209.66
-        icon: 'mdi:television'
+ # - platform: arpspoof
+#    devices:
+#      abby_iphone:
+#        friendly_name: Abbys iphone
+#        address: 10.9.209.106
+#        icon: 'mdi:iphone'
+#      becca_iphone:
+#        friendly_name: Beccas iphone
+#        address: 10.9.209.157
+#        icon: 'mdi:iphone'
+#      becca_roku:
+#        friendly_name: Beccas Roku
+#        address: 10.9.209.205
+#        icon: 'mdi:television'
+#      becca_chromebook:
+#        friendly_name: Beccas Chromebook
+#        address: 10.9.209.160
+#        icon: 'mdi:laptop'
+#      abby_chromebook:
+#        friendly_name: Abbys Chromebook
+#        address: 10.9.209.246
+#        icon: 'mdi:laptop'
+#      abby_roku:
+#        friendly_name: Abbys roku
+#        address: 10.9.209.66
+#        icon: 'mdi:television'
   - platform: tplink
     host: 10.9.209.105
 
@@ -164,7 +164,7 @@ device_tracker:
   - platform: unifi
     host: 10.9.209.11
     verify_ssl: false
-    site_id: !secret unifi_site_id
+#    site_id: !secret unifi_site_id
     username: !secret unifi_username
     password: !secret unifi_password
     interval_seconds: 25
@@ -195,6 +195,7 @@ media_player:
     client_secret: !secret spotify_client_secret
  
 recorder:
+#  db_url: mysql://homeassistantuser:password@localhost/homeassisant?charset=utf8
   purge_keep_days: 3
   
 

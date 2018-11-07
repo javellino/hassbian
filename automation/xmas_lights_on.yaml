@@ -3,14 +3,14 @@ initial_state: 'on'
 trigger:
   platform: sun
   event: sunset
-  offset: '-01:00:00'
+#  offset: '-01:00:00'
 condition:
   condition: state
   entity_id: input_boolean.xmas_mode
   state: 'on'
 action:
   service: switch.turn_on
-  entity_id: switch.outside_xmas_lights_116, switch.abby_tv_91, switch.becca_tv_90, switch.xmas_tree_214
+  entity_id: group.xmas_switches
 
 #  - service: light.turn_on
 #    entity_id:

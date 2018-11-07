@@ -26,6 +26,9 @@ xmas_switches:
   icon: mdi:pine-tree
   entities:
     - switch.xmas_tree_214
+    - switch.wemo_switch_alpha
+    - switch.dining_room_china_cabinet
+    - switch.dining_room_bookshelf
     - switch.abby_tv_91
     - switch.becca_tv_90
     - switch.outside_xmas_lights_116
@@ -73,7 +76,7 @@ media:
     - media_player.mpd
     - media_player.bedroom
     - media_player.family_room
-    - media_player.apple_tv_2
+    - media_player.apple_tv
     - media_player.fluffy
     - media_player.beccas_room
     - media_player.abbys_room
@@ -245,6 +248,7 @@ fronthall:
     - input_boolean.front_hall_motion
     - binary_sensor.upstairs_motion_124
     - binary_sensor.ring_front_door_ding
+    - binary_sensor.front_hall_motion
     - group.front_door
 
 motion:
@@ -366,7 +370,8 @@ basement_media:
   entities:
     - sensor.basement_remote_activity
     - remote.basement
-    - media_player.basement_apple_tv
+    - remote.apple_tv
+    - media_player.apple_tv
     - camera.basement
 
 

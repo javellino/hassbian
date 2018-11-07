@@ -9,7 +9,7 @@ condition:
   state: 'on'
 action:
   service: switch.turn_off
-  entity_id: switch.abby_tv_91, switch.becca_tv_90, switch.outside_xmas_lights_116, switch.xmas_tree_214
+  entity_id: group.xmas_switches
 
 
 

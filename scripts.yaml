@@ -41,7 +41,7 @@ goodnight:
   #goodnight family room lights and media
   - data:
       entity_id: light.family_room
-    entity_id: light.joe_family_room_lamp, light.fireplace_lights_220
+    entity_id: light.joe_family_room_lamp, light.fireplace_lights_220, light.jen_family_room_lamp
     service: light.turn_off
   - service: switch.turn_off
     data:

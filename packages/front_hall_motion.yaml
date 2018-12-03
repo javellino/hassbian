@@ -8,6 +8,13 @@ script:
       - service: input_boolean.turn_off
         entity_id: input_boolean.front_hall_motion
 
+binary_sensor:
+  - platform: template
+    sensors:
+      front_hall_motion:
+        friendly_name: Front Hall Motion
+        value_template: "{{ is_state('input_boolean.front_hall_motion', 'on')}}"
+        device_class: motion
         
       
 input_boolean:

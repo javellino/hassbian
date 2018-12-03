@@ -3,7 +3,6 @@ initial_state: 'on'
 trigger:
   platform: state
   entity_id: input_boolean.xmas_mode
-#  to: 'on'
 action:
   - service: group.set_visibility
     entity_id: group.xmas_switches

@@ -98,44 +98,17 @@ sensor: !include sensors.yaml
 
 zone: !include zones.yaml
 
-
-arpspoof:
-  interface: eth0
-
 switch:
- # - platform: arpspoof
-#    devices:
-#      abby_iphone:
-#        friendly_name: Abbys iphone
-#        address: 10.9.209.106
-#        icon: 'mdi:iphone'
-#      becca_iphone:
-#        friendly_name: Beccas iphone
-#        address: 10.9.209.157
-#        icon: 'mdi:iphone'
-#      becca_roku:
-#        friendly_name: Beccas Roku
-#        address: 10.9.209.205
-#        icon: 'mdi:television'
-#      becca_chromebook:
-#        friendly_name: Beccas Chromebook
-#        address: 10.9.209.160
-#        icon: 'mdi:laptop'
-#      abby_chromebook:
-#        friendly_name: Abbys Chromebook
-#        address: 10.9.209.246
-#        icon: 'mdi:laptop'
-#      abby_roku:
-#        friendly_name: Abbys roku
-#        address: 10.9.209.66
-#        icon: 'mdi:television'
+
   - platform: tplink
     host: 10.9.209.105
 
 
 shell_command:
-  start_deus_ex: curl !secret start_deus_ex
-  stop_deus_ex: curl !secret stop_deus_ex
+  start_deus_ex: curl "http://10.9.209.25:3480/data_request?id=action&output_format=xml&DeviceNum=129&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=1"
+  stop_deus_ex: curl "http://10.9.209.25:3480/data_request?id=action&output_format=xml&DeviceNum=129&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=0"
+  restart_openvpn: ssh pi@raspberrypi.local 'sudo systemctl restart openvpn'
+  restart_transmission: ssh pi@raspberrypi.local 'sudo /bin/sh /etc/openvpn/torrentvpn.sh'
   
 
 
@@ -155,7 +128,7 @@ mqtt:
   discovery_prefix: homeassistant
 
 device_tracker:
-  - platform: owntracks_http
+#  - platform: owntracks_http
 #platform: owntracks
 #    max_gps_accuracy: 100
 #    waypoints: true
@@ -179,7 +152,7 @@ device_tracker:
 
 camera 1:
   - platform: mjpeg
-    mjpeg_url: http://raspberrypi:8081/0/stream
+    mjpeg_url: http://gonzo.local:8081
     name: Basement
 
 
@@ -189,7 +162,7 @@ camera 7:
 
 media_player:
   - platform: mpd
-    host: raspberrypi
+    host: 10.9.209.130
   - platform: spotify
     client_id: !secret spotify_client_id
     client_secret: !secret spotify_client_secret
@@ -212,9 +185,9 @@ google:
   client_secret: !secret google_client_secret
 
 notify:
-  - name: pushbullet
-    platform: pushbullet
-    api_key: !secret pushbullet_api_key
+#  - name: pushbullet
+#    platform: pushbullet
+#    api_key: !secret pushbullet_api_key
   - name: pb
     platform: pushover
     api_key: !secret pushover_api_key

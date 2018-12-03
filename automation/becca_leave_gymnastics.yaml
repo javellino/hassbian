@@ -3,9 +3,12 @@ initial_state: 'on'
 trigger:
   platform: state
   entity_id: sensor.becca_location
-  from: 'gymnastics'
+  from: 'Gymnastics'
 action:
   - service: tts.google_say
     data:
       entity_id: media_player.kitchen_speaker
-      message: "Becca has left Gymastics"
+      message: "Becca has left Gymnastics"
+  - service: notify.pb
+    data:
+      message: "Becca has left Gymnastics."

@@ -16,6 +16,8 @@ sensor.16_shanondale_ct:
   friendly_name: USPS
 sensor.joe_location:
   icon: mdi:cellphone-iphone
+sensor.becca_location:
+  icon: mdi:cellphone-iphone
 light.jens_lamp_118:
   icon: mdi:lamp
 light.joes_lamp_119:

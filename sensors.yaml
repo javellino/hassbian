@@ -74,10 +74,10 @@
       value_template: "{% if is_state('states.device_tracker.abbysiphone.state', 'home' ) %} {{states.device_tracker.abbysiphone.state }} {% else %}  {{ states.device_tracker.abby_iphone.state }} {% endif %}  " 
     joe_location:
       friendly_name: Joe's Location
-      value_template: "{% if is_state('states.device_tracker.joes_iphone_7.state', 'home' ) %} {{states.device_tracker.joes_iphone_7.state }} {% else %}  {{ states.device_tracker.joe_iphone.state }} {% endif %}  " 
+      value_template: "{% if is_state('states.device_tracker.joesiphone.state', 'home' ) %} {{states.device_tracker.joesiphone.state }} {% else %}  {{ states.device_tracker.joesiphone7.state }} {% endif %}  " 
     joe_iphone_battery:
       friendly_name: Joe's Battery
-      value_template: '{{ states.device_tracker.joe_iphone.attributes.battery|int }}'
+      value_template: '{{ states.device_tracker.joesiphone7.attributes.battery|int }}'
       device_class: battery
       unit_of_measurement: "%"
     abby_iphone_battery:
@@ -88,7 +88,6 @@
       friendly_name: Becca's Battery
       value_template: '{{ states.device_tracker.becca_iphone.attributes.battery|int }}'
       unit_of_measurement: "%"
-    
     becca_location:
       friendly_name: Becca's Location
       value_template: "{% if is_state('states.device_tracker.device_tracker.becca_beccasiphone', 'home' ) %} {{states.device_tracker.device_tracker.becca_beccasiphone.state }} {% else %}  {{ states.device_tracker.becca_iphone.state }} {% endif %}  " 
@@ -118,11 +117,6 @@
       value_template: "{{states.sensor.allergy_index_tomorrow.attributes.rating}}"
       icon_template: "{{states.sensor.allergy_index_tomorrow.attributes.icon}}"   
 
-#- platform: mqtt
-#  state_topic: owntracks/Abby/abbysiphone
-#  name: "Abbys iPhone"
-#  unit_of_measurement: "%"
-#  value_template: "{{ value_json.batt }}"
 
 - platform: mqtt
   state_topic: Vera/Events/FrontDoorLock
@@ -230,18 +224,28 @@
   api_key: !secret darksky_api_key
   monitored_conditions:
     - summary
+    - precip_type
     - icon
     - nearest_storm_distance
+    - minutely_summary
     - hourly_summary
     - daily_summary
+    - temperature_high
+    - temperature_low
     - temperature
+    - dew_point
     - humidity
     - precip_probability
     - precip_intensity
     - wind_speed
-#    - pressure
+#    - wind_gust
     - wind_bearing
     - apparent_temperature
+    - apparent_temperature_high
+    - apparent_temperature_low
+    - uv_index
+    - cloud_cover
+    
   update_interval: '00:15:00'
 
 
@@ -256,10 +260,10 @@
   unit_of_measurement: "%"
 
 
-- platform: ups
-  name: 'UPS'
-  username: !secret ups_username
-  password: !secret ups_password
+#- platform: ups
+#  name: 'UPS'
+#  username: !secret ups_username
+#  password: !secret ups_password
 
 
 #ring doorbell
@@ -272,9 +276,9 @@
     - volume
 
 
-- platform: crimereports
-  name: neighborhood_crime
-  radius: 1000
+#- platform: crimereports
+#  name: neighborhood_crime
+#  radius: 1000
 
 - platform: time_date
   display_options:
@@ -339,4 +343,3 @@
   resource: !secret joes_heroku_url_json
   name: Joes BG direction
   value_template: ' {{value_json[0].direction }} '
-

@@ -14,8 +14,5 @@ action:
   - service: notify.pb
     data_template:
       message: " {{ trigger.to_state.attributes.friendly_name }} has gone from {{trigger.from_state.state}} to {{trigger.to_state.state}}. "  
-#{{ trigger.entity_id.attributes.friendly_name }} 
-#  - service: notify.pb 
-#    data_template:
-#      message: "One of the Kids has has gone from {{ trigger.from_state.state }} to {{ trigger.to_state.state }}."
+
 

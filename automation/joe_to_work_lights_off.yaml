@@ -2,7 +2,7 @@ alias: 'Joes away'
 initial_state: 'on'
 trigger:
   platform: state
-  entity_id: device_tracker.joe_joesiphone6s
+  entity_id: sensor.joe_location
   from: 'home'
 #  to: 'not_home'
 condition:

@@ -10,14 +10,14 @@ condition:
  # condition: and
  # conditions:
   condition: state
-  entity_id: climate.basement
+  entity_id: climate.bsmt
   state: heat
 #    - condition: template
 #      value_template: "{{ states.climate.basement.attributes.current_temperature | int < 65 }}"  
 action:
   - service: climate.set_temperature
     data:
-      entity_id: climate.basement
+      entity_id: climate.bsmt
       temperature: 60
       
 

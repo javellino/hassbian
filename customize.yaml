@@ -131,7 +131,7 @@ binary_sensor.basement_slider_sensor:
   friendly_name: Basement Slider Door
 binary_sensor.front_door_sensor:
   device_class: opening
-  friendly_name: Front Door Sensor
+  friendly_name: Front Door
 media_player.apple_tv:
   icon: mdi:apple
 light.fireplace_lights_220:
@@ -168,3 +168,5 @@ binary_sensor.mbr_window_sensor_197:
 switch.bedfan:
   friendly_name: Bedfan
   icon: mdi:hotel
+binary_sensor.dafang_motion_sensor:
+  friendly_name: Basement motion

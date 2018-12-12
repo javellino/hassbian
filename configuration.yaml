@@ -110,7 +110,11 @@ shell_command:
   restart_openvpn: ssh pi@raspberrypi.local 'sudo systemctl restart openvpn'
   restart_transmission: ssh pi@raspberrypi.local 'sudo /bin/sh /etc/openvpn/torrentvpn.sh'
   
-
+custom_updater:
+  track:
+    - cards
+    - components
+    
 
 panel_iframe:
   bg:
@@ -150,7 +154,7 @@ device_tracker:
       - PHONE
 
 
-camera 1:
+camera:
   - platform: mjpeg
     mjpeg_url: http://gonzo.local:8081
     name: Basement
@@ -175,6 +179,10 @@ recorder:
 #ifttt API
 ifttt:
   key: !secret ifttt_key
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
 
 nest:
   client_id: !secret nest_client_id

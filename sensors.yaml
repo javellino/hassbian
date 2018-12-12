@@ -1,10 +1,18 @@
 - platform: pi_hole
   host: 10.9.209.182:8017
   name: pihole
+  monitored_conditions:
+    - ads_blocked_today
+    - ads_percentage_today
+    - domains_being_blocked
   
 - platform: pi_hole
   host: 10.9.209.11
   name: pihole-gonzo
+  monitored_conditions:
+    - ads_blocked_today
+    - ads_percentage_today
+    - domains_being_blocked
 
 #- platform: yr
 
@@ -71,10 +79,10 @@
       value_template: "{{ 'Online' if is_state('device_tracker.harmonyhub', 'home') else 'OFFLINE' }}"
     abby_location:
       friendly_name: Abby's Location
-      value_template: "{% if is_state('states.device_tracker.abbysiphone.state', 'home' ) %} {{states.device_tracker.abbysiphone.state }} {% else %}  {{ states.device_tracker.abby_iphone.state }} {% endif %}  " 
+      value_template: "{% if states.device_tracker.abbysiphone.state == 'home'  %} {{states.device_tracker.abbysiphone.state }} {% else %}  {{ states.device_tracker.abby_abbysiphone.state }} {% endif %}" 
     joe_location:
       friendly_name: Joe's Location
-      value_template: "{% if is_state('states.device_tracker.joesiphone.state', 'home' ) %} {{states.device_tracker.joesiphone.state }} {% else %}  {{ states.device_tracker.joesiphone7.state }} {% endif %}  " 
+      value_template: "{%  if states.device_tracker.joesiphone.state == 'home' %} {{states.device_tracker.joesiphone.state }} {% else %}  {{ states.device_tracker.joe_joesiphone6s.state }} {% endif %}" 
     joe_iphone_battery:
       friendly_name: Joe's Battery
       value_template: '{{ states.device_tracker.joesiphone7.attributes.battery|int }}'
@@ -82,7 +90,7 @@
       unit_of_measurement: "%"
     abby_iphone_battery:
       friendly_name: Abby's Battery
-      value_template: '{{ states.device_tracker.abby_iphone.attributes.battery|int }}'
+      value_template: '{{ states.device_tracker.abby_abbysiphone.attributes.battery|int }}'
       unit_of_measurement: "%"
     becca_iphone_battery:
       friendly_name: Becca's Battery
@@ -90,7 +98,7 @@
       unit_of_measurement: "%"
     becca_location:
       friendly_name: Becca's Location
-      value_template: "{% if is_state('states.device_tracker.device_tracker.becca_beccasiphone', 'home' ) %} {{states.device_tracker.device_tracker.becca_beccasiphone.state }} {% else %}  {{ states.device_tracker.becca_iphone.state }} {% endif %}  " 
+      value_template: "{% if states.device_tracker.beccasiphone.state == 'home' %} {{states.device_tracker.beccasiphone.state }} {% else %}  {{ states.device_tracker.becca_beccasiphone.state }} {% endif %}  " 
 
     waqi_fredericksburg:
       friendly_name: Air Quality
@@ -158,7 +166,7 @@
 
 - platform: waze_travel_time
   name: joe to gymnastics
-  origin: device_tracker.joe_iphone
+  origin:  device_tracker.joe_joesiphone6s
   destination: !secret gymnastics_address
   region: 'US'
 
@@ -218,33 +226,38 @@
   locations:
     - fredericksburg
 
+- platform: google_geocode
+  origin:  device_tracker.abby_abbysiphone
+  
+- platform: google_geocode
+  origin: device_tracker.becca_beccasiphone
+  
 
-
-- platform: darksky
-  api_key: !secret darksky_api_key
-  monitored_conditions:
-    - summary
-    - precip_type
-    - icon
-    - nearest_storm_distance
-    - minutely_summary
-    - hourly_summary
-    - daily_summary
-    - temperature_high
-    - temperature_low
-    - temperature
-    - dew_point
-    - humidity
-    - precip_probability
-    - precip_intensity
-    - wind_speed
+#- platform: darksky
+#  api_key: !secret darksky_api_key
+#  monitored_conditions:
+#    - summary
+#    - precip_type
+#    - icon
+##    - nearest_storm_distance
+#    - minutely_summary
+#    - hourly_summary
+#    - daily_summary
+#    - temperature_high
+#    - temperature_low
+#    - temperature
+#    - dew_point
+#    - humidity
+#    - precip_probability
+#    - precip_intensity
+#    - wind_speed
 #    - wind_gust
-    - wind_bearing
-    - apparent_temperature
-    - apparent_temperature_high
-    - apparent_temperature_low
-    - uv_index
-    - cloud_cover
+#    - wind_bearing
+#    - apparent_temperature
+#    - apparent_temperature_high
+#    - apparent_temperature_low
+#    - uv_index
+ #   - cloud_cover
     
   update_interval: '00:15:00'
 

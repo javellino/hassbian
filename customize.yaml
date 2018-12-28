@@ -170,3 +170,5 @@ switch.bedfan:
   icon: mdi:hotel
 binary_sensor.dafang_motion_sensor:
   friendly_name: Basement motion
+sensor.to_alexandria:
+  icon: mdi:train

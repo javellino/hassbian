@@ -73,6 +73,10 @@ goodnight:
   - data:
       entity_id: group.outside_lights
     service: light.turn_off
+  - data:
+      entity_id: switch.garage_door_99
+    service: switch.turn_off
+    
     
 #goodnight kitchen    
   - data:

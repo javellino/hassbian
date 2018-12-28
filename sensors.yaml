@@ -226,41 +226,29 @@
   locations:
     - fredericksburg
 
-- platform: google_geocode
-  origin:  device_tracker.abby_abbysiphone
+#- platform: google_geocode
+#  name: abby geocode
+#  origin:  device_tracker.abby_abbysiphone
+#  api_key: AIzaSyDXR6VJg7_cVjdWcTOVNqwVT5eaQLcgW8E
   
-- platform: google_geocode
-  origin: device_tracker.becca_beccasiphone
+#- platform: google_geocode
+#  name: becca geocode
+#  origin: device_tracker.becca_beccasiphone
+#  api_key: AIzaSyDXR6VJg7_cVjdWcTOVNqwVT5eaQLcgW8E  
+
+#### ******Rpi status ******
+
+- platform: command_line
+  name: raspberrypi disk space
+  command: ssh pi@raspberrypi '/bin/sh /home/pi/disk_status.sh'
+  unit_of_measurement: "%"
+
+- platform: command_line
+  name: raspberrypi cpu
+  command: ssh pi@raspberrypi '/bin/sh /home/pi/cpu_status.sh'
+  unit_of_measurement: "%"  
   
-
-#- platform: darksky
-#  api_key: !secret darksky_api_key
-#  monitored_conditions:
-#    - summary
-#    - precip_type
-#    - icon
-##    - nearest_storm_distance
-#    - minutely_summary
-#    - hourly_summary
-#    - daily_summary
-#    - temperature_high
-#    - temperature_low
-#    - temperature
-#    - dew_point
-#    - humidity
-#    - precip_probability
-#    - precip_intensity
-#    - wind_speed
-#    - wind_gust
-#    - wind_bearing
-#    - apparent_temperature
-#    - apparent_temperature_high
-#    - apparent_temperature_low
-#    - uv_index
- #   - cloud_cover
-    
-  update_interval: '00:15:00'
-
+### ****** hassbian status ********
 
 - platform: command_line
   name: CPU
@@ -271,6 +259,27 @@
   name: Disk Space used
   command: df -l --total  / | tail -1 | awk '{ print int($5) }'
   unit_of_measurement: "%"
+
+
+### ******Gonzo satus *****
+
+- platform: command_line
+  name: gonzo CPU
+  command: ssh joe@10.9.209.11 '/bin/sh /home/joe/cpu_status.sh'
+  unit_of_measurement: "%"
+
+- platform: command_line
+  name: gonzo disk space
+  command: ssh joe@10.9.209.11 '/bin/sh /home/joe/disk_status.sh'
+
+### ******* Gonzo data storage status ******  
+- platform: command_line
+  name: data space
+  command: ssh joe@10.9.209.11 '/bin/sh /home/joe/data_status.sh'
+  unit_of_measurement: "%"
+  
+
+
 
 
 #- platform: ups
@@ -356,3 +365,15 @@
   resource: !secret joes_heroku_url_json
   name: Joes BG direction
   value_template: ' {{value_json[0].direction }} '
+
+
+- platform: gtfs_realtime
+  trip_update_url: http://www.vre.org/gtfs-realtime/TripUpdateFeed
+  vehicle_position_url: http://www.vre.org/gtfs-realtime/VehiclePositionFeed
+  departures:
+    - name: to Alexandria
+      route: "4"
+      stopid: "00000000000000000000000000000004"
+      
+      
+    

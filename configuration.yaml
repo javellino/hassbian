@@ -99,7 +99,13 @@ sensor: !include sensors.yaml
 zone: !include zones.yaml
 
 switch:
-
+  - platform: command_line
+    switches:
+      deus_ex:
+        command_on: curl "http://10.9.209.25:3480/data_request?id=action&output_format=xml&DeviceNum=129&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=1"
+        command_off: curl "http://10.9.209.25:3480/data_request?id=action&output_format=xml&DeviceNum=129&serviceId=urn:upnp-org:serviceId:SwitchPower1&action=SetTarget&newTargetValue=0"
+        friendly_name: Deus Ex
+        
   - platform: tplink
     host: 10.9.209.105
 

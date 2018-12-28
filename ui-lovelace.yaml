@@ -9,7 +9,7 @@ resources:
     type: js
   - url: /local/monster-card.js
     type: js
-  - url: /local/tracker-card.js?v=0
+  - url: /local/tracker-card.js?v=0.1.5
     type: js
     
     
@@ -28,22 +28,26 @@ views:
         cards:
           - type: entity-filter
             entities:
-              - sensor.joe_location
-              - device_tracker.jensiphone
-              - sensor.abby_location
-              - sensor.becca_location
+              - entity: sensor.joe_location
+                name: Joe
+              - entity: device_tracker.jensiphone
+                name: Jen
+              - entity: sensor.abby_location
+                name: Abby
+              - entity: sensor.becca_location
+                name: Becca
             state_filter:
               - "home"
             card:
               type: glance
               title: Who's home?
               show_state: false
-          - type: map
-            entities:
-              - zone.home
-              - device_tracker.joe_joesiphone6s
-              - device_tracker.abby_abbysiphone
-              - device_tracker.becca_beccasiphone
+ #         - type: map
+ #           entities:
+ #             - zone.home
+ #             - device_tracker.joe_joesiphone6s
+ #             - device_tracker.abby_abbysiphone
+ #             - device_tracker.becca_beccasiphone
       - type: entity-filter
         entities: 
           - binary_sensor.front_door_sensor
@@ -60,12 +64,18 @@ views:
           show_empty: false
       - type: entity-filter
         entities:
-          - binary_sensor.office_motion_161
-          - binary_sensor.upstairs_motion_124
-          - binary_sensor.basement_motion_1_216
-          - binary_sensor.dafang_motion_sensor	
-          - binary_sensor.front_hall_motion
-          - binary_sensor.ring_front_door_motion
+          - entity: binary_sensor.office_motion_161
+            name: Office
+          - entity: binary_sensor.upstairs_motion_124
+            name: Office
+          - entity: binary_sensor.basement_motion_1_216
+            name: "Basement 1"
+          - entity: binary_sensor.dafang_motion_sensor
+            name: "Basement 2"
+          - entity: binary_sensor.front_hall_motion
+            name: Front Hall
+          - entity: binary_sensor.ring_front_door_motion
+            name: Front Door
         state_filter:
           - "on"
         card:
@@ -197,6 +207,61 @@ views:
  #               entity:
  #                 - media_player.master_bedroom_speaker
               
+  - title: Downstairs
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entity-button
+            entity: light.table_light_229
+            title: table light
+            tap_action: toggle
+            icon: mdi:ceiling-light
+          - type: thermostat
+            entity: climate.kit
+            title: Kitchen
+          - type: custom:mini-media-player
+            entity: media_player.kitchen_speaker
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                entity: light.fireplace_lights_220
+                title: fireplace 
+                icon: mdi:ceiling-light
+                tap_action: toggle
+              - type: entity-button
+                entity: switch.family_room_fan_213
+                title: fan
+                icon: mdi:fan
+                tap_action: toggle
+              - type: entity-button
+                entity: switch.tplink_plug
+                title: end table
+                icon: mdi:lamp
+                tap_action: toggle
+          - type: horizontal-stack
+            cards: 
+              - type: light
+                entity: light.joe_family_room_lamp
+                name: Joes lamp
+              - type: light
+                entity: light.jen_family_room_lamp
+                name: Jens lamp
+                
+                
+      - type: vertical-stack
+        cards:
+
+          - type: custom:mini-media-player
+            entity: media_player.family_room
+            title: Roku
+            artwork: cover
+          - type: custom:mini-media-player
+            entity: media_player.fluffy
+            title: Fluffy
+            artwork: cover
+        
         
         
   - title: Basement
@@ -211,6 +276,12 @@ views:
           - light.stair_lights_232
       - type: thermostat
         entity: climate.bsmt 
+      - type: custom:mini-media-player
+        artwork: cover
+        entity: media_player.apple_tv
+        
+        
+ 
 #  - title: Dining Room
 #    cards:
 #      - type: entity-button
@@ -270,8 +341,56 @@ views:
             entity: media_player.office_speaker
         
         
-        
-        
+  - title: Outside
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entity-filter
+            entities: 
+              - binary_sensor.front_door_sensor
+              - binary_sensor.garage_door_door_sensor
+              - binary_sensor.back_door_slider_sensor
+              - binary_sensor.basement_slider_sensor
+              - binary_sensor.garage_position 
+            state_filter:
+              - "on"
+            card:
+              type: glance
+              title: Doors Open
+            show_state: false
+            show_empty: false
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                name: Driveway
+                icon: mdi:car-side
+                entity: light.driveway_lights_65
+                tap_action: toggle
+              - type: entity-button
+                name: Front Porch
+                icon: mdi:door
+                entity: light.front_porch_lights_63
+                tap_action: toggle
+              - type: entity-button
+                name: Back Deck
+                icon: mdi:ceiling-light
+                entity: light.deck_light_228
+                tap_action: toggle   
+
+          - type: picture-glance
+            camera_image: camera.front_door
+            title: Front Door
+            entities:
+              - binary_sensor.ring_front_door_motion
+              - binary_sensor.ring_front_door_ding
+              - entity: lock.front_door_lock_4
+                tap_action: toggle
+            show_state: false
+          - type: entity-button
+            entity: switch.garage_door_99
+            title: Garage door
+            icon: mdi:garage
+            
   - title: Network
     cards:
       - type: vertical-stack
@@ -279,17 +398,46 @@ views:
           - type: horizontal-stack
             cards:
               - type: gauge
-                entity:  sensor.cpu
-                title: Hassbian CPU
-              - type: gauge
                 entity: sensor.disk_space_used
                 title: Hassbian Disk Space
+              - type: gauge
+                entity: sensor.gonzo_disk_space
+                title: Gonzo Disk space
+              - type: gauge
+                entity: sensor.raspberrypi_disk_space
+                title: Rpi Disk Space  
+              - type: gauge
+                entity: sensor.data_space
+                title: Data Storage
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.cpu
+                title: Hassbian CPU
+              - type: gauge
+                entity: sensor.gonzo_cpu
+                title: Gonzo CPU
+              - type: gauge
+                entity: sensor.raspberrypi_cpu
+                title: Rpi CPU
+          - type: horizontal-stack
+            cards:
+              - type: entity-button
+                name: OpenVPN
+                entity:  binary_sensor.openvpn
+                tap_action: call-service
+                service: shell_command.restart_openvpn
+              - type: entity-button
+                name: transmission
+                entity: binary_sensor.transmission_status
+                tap_action: call-service
+                service: shell_command.restart_transmission
           - type: custom:tracker-card
-            title: Updates available
+            title: Custom Updates available
             trackers:
               - sensor.custom_card_tracker
               - sensor.custom_component_tracker
-      - type: custom:mini-media-player
-        artwork: cover
-        entity: media_player.spotify
+          - type: custom:mini-media-player
+            artwork: cover
+            entity: media_player.spotify
                 

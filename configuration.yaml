@@ -72,7 +72,8 @@ tts:
 # Cloud
 cloud:
 
-
+lovelace:
+  mode: yaml
 
 ffmpeg:
 

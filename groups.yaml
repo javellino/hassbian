@@ -284,7 +284,6 @@ office_lights:
     - light.office_post_light
     - light.desk_light
     - light.mood_lighting
-    - light.office_light_3
     - light.office_light_4
 
 

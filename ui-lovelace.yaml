@@ -145,30 +145,35 @@ views:
               - type: entity-button
                 entity: script.mbr_sleep_mode
                 name: sleep
-                tap_action: call-service
-                service: script.turn_on
+                tap_action: 
+                  action: call-service
+                  service: script.turn_on
               - type: entity-button
                 entity: script.mbr_nightlight_mode
                 name: presleep
-                tap_action: call-service
-                service: script.turn_on
+                tap_action: 
+                  action: call-service
+                  service: script.turn_on
               - type: entity-button
                 entity:  script.mbr_awake_in_bed
                 name: awake
                 icon: mdi:eye-outline
-                tap_action: call-service
-                service: script.turn_on
+                tap_action: 
+                  action: call-service
+                  service: script.turn_on
           - type: horizontal-stack
             cards:
               - type: entity-button
                 name: fan
                 icon: mdi:fan
                 entity: switch.mbr_fan_108
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
               - type: entity-button
                 name: ceiling light
                 entity:  light.mbr_lights_109
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
                 icon: mdi:ceiling-light
           - type: horizontal-stack
             cards:
@@ -180,12 +185,14 @@ views:
             cards:
               - type: entity-button
                 name: bedfan
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
                 icon: mdi:hotel
                 entity: switch.bedfan
               - type: entity-button 
                 name: jens blanket
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
                 entity: switch.wemo_switch_bravo
           - type: thermostat
             entity: climate.upstairs
@@ -214,7 +221,8 @@ views:
           - type: entity-button
             entity: light.table_light_229
             title: table light
-            tap_action: toggle
+            tap_action: 
+              action: toggle
             icon: mdi:ceiling-light
           - type: thermostat
             entity: climate.kit
@@ -229,17 +237,20 @@ views:
                 entity: light.fireplace_lights_220
                 title: fireplace 
                 icon: mdi:ceiling-light
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
               - type: entity-button
                 entity: switch.family_room_fan_213
                 title: fan
                 icon: mdi:fan
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
               - type: entity-button
                 entity: switch.tplink_plug
                 title: end table
                 icon: mdi:lamp
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
           - type: horizontal-stack
             cards: 
               - type: light
@@ -301,7 +312,6 @@ views:
                 entity: sensor.temperature_sensor_1_181
                 title: Temperature
                 from: left
-                scale: 30px
                 min: 0
                 max: 100
                 severity:
@@ -315,7 +325,6 @@ views:
                 entity: sensor.humidity_sensor_1_183
                 title: Humidity
                 from: left
-                scale: 30px
                 min: 0
                 max: 100
                 severity:
@@ -365,17 +374,20 @@ views:
                 name: Driveway
                 icon: mdi:car-side
                 entity: light.driveway_lights_65
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
               - type: entity-button
                 name: Front Porch
                 icon: mdi:door
                 entity: light.front_porch_lights_63
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
               - type: entity-button
                 name: Back Deck
                 icon: mdi:ceiling-light
                 entity: light.deck_light_228
-                tap_action: toggle   
+                tap_action: 
+                  action: toggle   
 
           - type: picture-glance
             camera_image: camera.front_door
@@ -384,12 +396,15 @@ views:
               - binary_sensor.ring_front_door_motion
               - binary_sensor.ring_front_door_ding
               - entity: lock.front_door_lock_4
-                tap_action: toggle
+                tap_action: 
+                  action: toggle
             show_state: false
           - type: entity-button
             entity: switch.garage_door_99
             title: Garage door
             icon: mdi:garage
+            tap_action:
+              action: toggle
             
   - title: Network
     cards:
@@ -399,39 +414,41 @@ views:
             cards:
               - type: gauge
                 entity: sensor.disk_space_used
-                title: Hassbian Disk Space
+                name: Hassbian Disk Space
               - type: gauge
                 entity: sensor.gonzo_disk_space
-                title: Gonzo Disk space
+                name: Gonzo Disk space
               - type: gauge
                 entity: sensor.raspberrypi_disk_space
-                title: Rpi Disk Space  
+                name: Rpi Disk Space  
               - type: gauge
                 entity: sensor.data_space
-                title: Data Storage
+                name: Data Storage
           - type: horizontal-stack
             cards:
               - type: gauge
                 entity: sensor.cpu
-                title: Hassbian CPU
+                name: Hassbian CPU
               - type: gauge
                 entity: sensor.gonzo_cpu
-                title: Gonzo CPU
+                name: Gonzo CPU
               - type: gauge
                 entity: sensor.raspberrypi_cpu
-                title: Rpi CPU
+                name: Rpi CPU
           - type: horizontal-stack
             cards:
               - type: entity-button
                 name: OpenVPN
                 entity:  binary_sensor.openvpn
-                tap_action: call-service
-                service: shell_command.restart_openvpn
+                tap_action: 
+                  action: call-service
+                  service: shell_command.restart_openvpn
               - type: entity-button
                 name: transmission
                 entity: binary_sensor.transmission_status
-                tap_action: call-service
-                service: shell_command.restart_transmission
+                tap_action: 
+                  action: call-service
+                  service: shell_command.restart_transmission
           - type: custom:tracker-card
             title: Custom Updates available
             trackers:
@@ -440,4 +457,5 @@ views:
           - type: custom:mini-media-player
             artwork: cover
             entity: media_player.spotify
+
                 

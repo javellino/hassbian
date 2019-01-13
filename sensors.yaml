@@ -229,12 +229,12 @@
 #- platform: google_geocode
 #  name: abby geocode
 #  origin:  device_tracker.abby_abbysiphone
-#  api_key: AIzaSyDXR6VJg7_cVjdWcTOVNqwVT5eaQLcgW8E
+#  api_key:
   
 #- platform: google_geocode
 #  name: becca geocode
 #  origin: device_tracker.becca_beccasiphone
-#  api_key: AIzaSyDXR6VJg7_cVjdWcTOVNqwVT5eaQLcgW8E  
+#  api_key: 
 
 #### ******Rpi status ******
 
